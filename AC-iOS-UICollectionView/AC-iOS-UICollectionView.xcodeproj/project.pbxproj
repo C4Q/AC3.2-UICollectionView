@@ -8,20 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		3A399CFC1EF318D500ECCDCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A399CFB1EF318D500ECCDCE /* AppDelegate.swift */; };
-		3A399CFE1EF318D500ECCDCE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A399CFD1EF318D500ECCDCE /* ViewController.swift */; };
+		3A399CFE1EF318D500ECCDCE /* AlbumCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A399CFD1EF318D500ECCDCE /* AlbumCollectionViewController.swift */; };
 		3A399D011EF318D500ECCDCE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A399CFF1EF318D500ECCDCE /* Main.storyboard */; };
 		3A399D031EF318D500ECCDCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A399D021EF318D500ECCDCE /* Assets.xcassets */; };
 		3A399D061EF318D500ECCDCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A399D041EF318D500ECCDCE /* LaunchScreen.storyboard */; };
+		3A4591281EF31F8F00F332A6 /* APIRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4591271EF31F8F00F332A6 /* APIRequestManager.swift */; };
+		3A45912A1EF31FCC00F332A6 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4591291EF31FCC00F332A6 /* Album.swift */; };
+		3A45912C1EF31FDF00F332A6 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A45912B1EF31FDF00F332A6 /* Image.swift */; };
+		3A45912E1EF3202E00F332A6 /* AlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A45912D1EF3202E00F332A6 /* AlbumCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3A399CF81EF318D500ECCDCE /* AC-iOS-UICollectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AC-iOS-UICollectionView.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A399CFB1EF318D500ECCDCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3A399CFD1EF318D500ECCDCE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3A399CFD1EF318D500ECCDCE /* AlbumCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCollectionViewController.swift; sourceTree = "<group>"; };
 		3A399D001EF318D500ECCDCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3A399D021EF318D500ECCDCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A399D051EF318D500ECCDCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A399D071EF318D500ECCDCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3A4591271EF31F8F00F332A6 /* APIRequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequestManager.swift; sourceTree = "<group>"; };
+		3A4591291EF31FCC00F332A6 /* Album.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		3A45912B1EF31FDF00F332A6 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		3A45912D1EF3202E00F332A6 /* AlbumCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +62,58 @@
 		3A399CFA1EF318D500ECCDCE /* AC-iOS-UICollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				3A45912F1EF3204000F332A6 /* Views */,
+				3A4591301EF3205500F332A6 /* Models */,
+				3A4591311EF3215A00F332A6 /* Controllers */,
+				3A4591321EF3217400F332A6 /* Networking */,
+				3A4591331EF3218F00F332A6 /* Supporting Files */,
+			);
+			path = "AC-iOS-UICollectionView";
+			sourceTree = "<group>";
+		};
+		3A45912F1EF3204000F332A6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3A45912D1EF3202E00F332A6 /* AlbumCollectionViewCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		3A4591301EF3205500F332A6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3A4591291EF31FCC00F332A6 /* Album.swift */,
+				3A45912B1EF31FDF00F332A6 /* Image.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		3A4591311EF3215A00F332A6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3A399CFD1EF318D500ECCDCE /* AlbumCollectionViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		3A4591321EF3217400F332A6 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				3A4591271EF31F8F00F332A6 /* APIRequestManager.swift */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		3A4591331EF3218F00F332A6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
 				3A399CFB1EF318D500ECCDCE /* AppDelegate.swift */,
-				3A399CFD1EF318D500ECCDCE /* ViewController.swift */,
 				3A399CFF1EF318D500ECCDCE /* Main.storyboard */,
 				3A399D021EF318D500ECCDCE /* Assets.xcassets */,
 				3A399D041EF318D500ECCDCE /* LaunchScreen.storyboard */,
 				3A399D071EF318D500ECCDCE /* Info.plist */,
 			);
-			path = "AC-iOS-UICollectionView";
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,6 +148,7 @@
 				TargetAttributes = {
 					3A399CF71EF318D500ECCDCE = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 2FXG3J3786;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -136,8 +189,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A399CFE1EF318D500ECCDCE /* ViewController.swift in Sources */,
+				3A45912E1EF3202E00F332A6 /* AlbumCollectionViewCell.swift in Sources */,
+				3A4591281EF31F8F00F332A6 /* APIRequestManager.swift in Sources */,
+				3A399CFE1EF318D500ECCDCE /* AlbumCollectionViewController.swift in Sources */,
 				3A399CFC1EF318D500ECCDCE /* AppDelegate.swift in Sources */,
+				3A45912A1EF31FCC00F332A6 /* Album.swift in Sources */,
+				3A45912C1EF31FDF00F332A6 /* Image.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +317,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2FXG3J3786;
 				INFOPLIST_FILE = "AC-iOS-UICollectionView/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "nyc.c4q.AC-iOS-UICollectionView";
@@ -272,6 +330,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2FXG3J3786;
 				INFOPLIST_FILE = "AC-iOS-UICollectionView/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "nyc.c4q.AC-iOS-UICollectionView";
@@ -299,6 +358,7 @@
 				3A399D0C1EF318D500ECCDCE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
