@@ -80,38 +80,41 @@ uses to configure the navigation bar.
 
 ### 5. Full Implementation 
 
-Here's a full implementation of the ```UICollectionViewController``` subclass. A whole [working project is here](SpotifyGrid).
+Here's a full implementation of the ```UICollectionViewController``` subclass.  Take a look at the solution branch for the complete project.
 
 ```swift
 import UIKit
 
 fileprivate let reuseIdentifier = "AlbumCell"
 fileprivate let itemsPerRow: CGFloat = 3
+fileprivate let apiKey = "1ce6fda8a223aa4b7fa0cafe4dc3d3d0"
+fileprivate let apiURLRoot = "http://ws.audioscrobbler.com/2.0/"
 
 class AlbumCollectionViewController: UICollectionViewController, UITextFieldDelegate, UICollectionViewDelegateFlowLayout {
-    private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
     
+    @IBOutlet weak var searchAlbumTextField: UITextField!
+    
+    private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
     var albums: [Album] = []
     let searchTerm = "blue"
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "No Search Yet"
+        searchAlbumTextField.delegate = self
     }
-
+    
     // MARK: UICollectionViewDataSource
-
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-
-
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.albums.count
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         if let acvc = cell as? AlbumCollectionViewCell {
@@ -130,10 +133,9 @@ class AlbumCollectionViewController: UICollectionViewController, UITextFieldDele
                 }
             }
         }
-
         return cell
     }
-
+    
     // MARK: - TextField Delegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         search(textField.text!)
@@ -146,8 +148,8 @@ class AlbumCollectionViewController: UICollectionViewController, UITextFieldDele
     func search(_ term: String) {
         self.title = term
         let escapedString = term.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
-
-        APIRequestManager.manager.getData(endPoint: "https://api.spotify.com/v1/search?q=\(escapedString!)&type=album&limit=50") { (data: Data?) in
+        
+        APIRequestManager.manager.getData(endPoint: "\(apiURLRoot)?method=album.search&album=\(escapedString!)&api_key=\(apiKey)&format=json") { (data: Data?) in
             if  let validData = data,
                 let validAlbums = Album.albums(from: validData) {
                 self.albums = validAlbums
@@ -158,18 +160,11 @@ class AlbumCollectionViewController: UICollectionViewController, UITextFieldDele
         }
     }
     
-    // MARK: - Navigation
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-
     // MARK: - UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-
+        
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
