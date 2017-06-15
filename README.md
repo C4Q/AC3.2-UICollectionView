@@ -79,7 +79,7 @@ uses to configure the navigation bar.
 
 ### 5. Full Implementation 
 
-Here's a full implementation of the UICollectionViewController subclass. A whole [working project is here](SpotifyGrid).
+Here's a full implementation of the ```UICollectionViewController``` subclass. A whole [working project is here](SpotifyGrid).
 
 ```swift
 import UIKit
