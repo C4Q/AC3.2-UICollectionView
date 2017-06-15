@@ -3,7 +3,7 @@
 
 ### Objective
 
-To learn how to build and populate a ```UICollectionView```with dynamically sized items while understanding how flows work.
+To learn how to build and populate a ```UICollectionView```with dynamically sized items while understanding how flows influence the layout of a collection.
 
 ### Readings
 
