@@ -20,7 +20,7 @@ class NYTMovieReviewsViewController: UIViewController, UITableViewDataSource, UI
     
     var critics: [Critic] = []
     var reviews: [Review] = []
-    private let sectionInsets = UIEdgeInsets(top: 10.0, left: 20.0, bottom: 50.0, right: 20.0)
+    private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
     
     // MARK: - Outlets
     
@@ -72,7 +72,7 @@ class NYTMovieReviewsViewController: UIViewController, UITableViewDataSource, UI
     }
     
     func getMovieReviewsByCritic(_ criticName: String) -> URL? {
-        let getMovieReviewsByCriticURL = "\(apiURLRoot)reviews.search.json"
+        let getMovieReviewsByCriticURL = "\(apiURLRoot)reviews/search.json"
         guard var urlComponents = URLComponents(string: getMovieReviewsByCriticURL) else { return nil }
         
         let apiKeyQuery = URLQueryItem(name: apiKeyQueryKey, value: apiKeyQueryValue)
@@ -108,11 +108,11 @@ class NYTMovieReviewsViewController: UIViewController, UITableViewDataSource, UI
                     let image = UIImage(data: validData) {
                     DispatchQueue.main.async {
                         cell.criticHeadshotImageView.image = image
-                        self.criticsTableView.reloadData()
                     }
                 }
             }
         } else {
+            cell.criticHeadshotImageView.backgroundColor = .lightGray
             cell.criticHeadshotImageView.image = nil
         }
         return cell
@@ -127,20 +127,21 @@ class NYTMovieReviewsViewController: UIViewController, UITableViewDataSource, UI
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("\n\n----\n\n")
         print("Tapped row at index: \(indexPath.row)")
+        self.reviews = []
         let critic = self.critics[indexPath.row]
         
         guard let url = getMovieReviewsByCritic(critic.name) else { return }
         
-//        APIRequestManager.manager.getData(with: url) { (data: Data?) in
-//            if let validData = data {
-//                if let allReviews = Review.reviews(from: validData) {
-//                    self.reviews = allReviews
-//                    DispatchQueue.main.async {
-//                        self.reviewsByCriticCollectionView.reloadData()
-//                    }
-//                }
-//            }
-//        }
+        APIRequestManager.manager.getData(with: url) { (data: Data?) in
+            if let validData = data {
+                if let allReviews = Review.reviews(from: validData) {
+                    self.reviews = allReviews
+                    DispatchQueue.main.async {
+                        self.reviewsByCriticCollectionView.reloadData()
+                    }
+                }
+            }
+        }
     }
     
     // MARK: - UICollectionViewDataSource
@@ -150,13 +151,31 @@ class NYTMovieReviewsViewController: UIViewController, UITableViewDataSource, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return self.reviews.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = collectionView.dequeueReusableCell(withReuseIdentifier: collectionViewCellReuseIdentifier, for: indexPath) as! MovieReviewCollectionViewCell
-
         
+        let review = self.reviews[indexPath.row]
+        
+        item.reviewImageView.layer.cornerRadius = 5
+        item.reviewImageView.layer.masksToBounds = true
+        
+        if let reviewImage = review.image {
+            APIRequestManager.manager.getData(with: reviewImage.url, callback: { (data) in
+                if let validData = data {
+                    if let image = UIImage(data: validData) {
+                        DispatchQueue.main.async {
+                            item.reviewImageView.image = image
+                        }
+                    }
+                }
+            })
+        } else {
+            item.reviewImageView.backgroundColor = .lightGray
+            item.reviewImageView.image = nil
+        }
         return item
     }
     
@@ -177,7 +196,17 @@ class NYTMovieReviewsViewController: UIViewController, UITableViewDataSource, UI
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "ShowFullReviewSegue" {
+            if let destinationVC: ReviewDetailsViewController = segue.destination as? ReviewDetailsViewController,
+                let cell = sender as? MovieReviewCollectionViewCell,
+                let path = self.reviewsByCriticCollectionView.indexPath(for: cell) {
+                let selectedReview = self.reviews[path.row]
+             
+                destinationVC.movieTitle = selectedReview.movieTitle
+                destinationVC.rating = selectedReview.rating
+                destinationVC.summary = selectedReview.summary
+                destinationVC.movieImage = cell.reviewImageView.image
+            }
+        }
     }
 }

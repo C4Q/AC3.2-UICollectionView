@@ -23,9 +23,8 @@ class APIRequestManager {
         
         session.dataTask(with: endpoint) { (data, response, error) in
             if error != nil {
-                print("Error during session: \(error)")
+                print("Error during session: \(String(describing: error))")
             }
-            
             guard let validData = data else {
                 callback(nil)
                 return

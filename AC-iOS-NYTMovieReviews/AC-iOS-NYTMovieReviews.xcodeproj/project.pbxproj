@@ -18,6 +18,8 @@
 		3A94A2771EF44FAF00AA7279 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A94A2761EF44FAF00AA7279 /* Review.swift */; };
 		3A94A27A1EF45B2100AA7279 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A94A2791EF45B2100AA7279 /* Image.swift */; };
 		3A94A27C1EF479F300AA7279 /* MovieReviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A94A27B1EF479F300AA7279 /* MovieReviewCollectionViewCell.swift */; };
+		3AE171581EF5BFC700CE3454 /* ReviewImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE171571EF5BFC700CE3454 /* ReviewImage.swift */; };
+		3AE1715A1EF5C22000CE3454 /* ReviewDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE171591EF5C22000CE3454 /* ReviewDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		3A94A2761EF44FAF00AA7279 /* Review.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Review.swift; path = ../Review.swift; sourceTree = "<group>"; };
 		3A94A2791EF45B2100AA7279 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		3A94A27B1EF479F300AA7279 /* MovieReviewCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieReviewCollectionViewCell.swift; sourceTree = "<group>"; };
+		3AE171571EF5BFC700CE3454 /* ReviewImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewImage.swift; sourceTree = "<group>"; };
+		3AE171591EF5C22000CE3454 /* ReviewDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				3A94A2691EF44AB900AA7279 /* NYTMovieReviewsViewController.swift */,
+				3AE171591EF5C22000CE3454 /* ReviewDetailsViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -115,6 +120,7 @@
 		3A94A2781EF44FD100AA7279 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3AE171571EF5BFC700CE3454 /* ReviewImage.swift */,
 				3A94A2761EF44FAF00AA7279 /* Review.swift */,
 				3A94A2741EF44F9800AA7279 /* Critic.swift */,
 				3A94A2791EF45B2100AA7279 /* Image.swift */,
@@ -195,6 +201,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A94A26A1EF44AB900AA7279 /* NYTMovieReviewsViewController.swift in Sources */,
+				3AE1715A1EF5C22000CE3454 /* ReviewDetailsViewController.swift in Sources */,
+				3AE171581EF5BFC700CE3454 /* ReviewImage.swift in Sources */,
 				3A94A27A1EF45B2100AA7279 /* Image.swift in Sources */,
 				3A94A2571EF448A600AA7279 /* AppDelegate.swift in Sources */,
 				3A94A2771EF44FAF00AA7279 /* Review.swift in Sources */,

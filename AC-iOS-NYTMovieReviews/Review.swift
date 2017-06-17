@@ -12,28 +12,44 @@ class Review {
     let movieTitle: String
     let rating: String
     let summary: String
-    let image: Image
+    let image: ReviewImage?
     
-    init(movieTitle: String, rating: String, summary: String, image: Image) {
+    init(movieTitle: String, rating: String, summary: String, image: ReviewImage?) {
         self.movieTitle = movieTitle
         self.rating = rating
         self.summary = summary
         self.image = image
     }
     
-//    convenience init(<#parameters#>) {
-//        <#statements#>
-//    }
-    
+    convenience init?(from dict: [String:AnyObject]) throws {
+        if let title = dict["display_title"] as? String,
+            let rating = dict["mpaa_rating"] as? String,
+            let summary = dict["summary_short"] as? String {
+            if let multimediaInfo = dict["multimedia"] as? [String:AnyObject] {
+                let image = ReviewImage(from: multimediaInfo)
+                self.init(movieTitle: title, rating: rating, summary: summary, image: image ?? nil)
+            } else {
+                self.init(movieTitle: title, rating: rating, summary: summary, image: nil)
+            }
+        } else {
+            return nil
+        }
+    }
+
     static func reviews(from data: Data) -> [Review]? {
         var reviewsToReturn: [Review] = []
         
         do {
            let jsonData = try JSONSerialization.jsonObject(with: data, options: [])
             
-            guard let dict = jsonData as? [String:AnyObject] else { return nil }
+            guard let response = jsonData as? [String:AnyObject],
+            let results = response["results"] as? [[String:AnyObject]] else { return nil }
             
-            print(dict)
+            for result in results {
+                if let review = try Review(from: result) {
+                    reviewsToReturn.append(review)
+                }
+            }
         }
         catch let error as NSError{
             print("Error parsing reviews: \(error)")

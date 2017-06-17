@@ -36,7 +36,6 @@ class Critic {
         do {
             let jsonData = try JSONSerialization.jsonObject(with: data, options: [])
             
-            
             guard let response: [String:AnyObject] = jsonData as? [String: AnyObject],
             let results = response["results"] as? [[String:Any]] else {
                 return nil
@@ -51,7 +50,6 @@ class Critic {
         catch let error as NSError {
             print("Error parsing results: \(error.localizedDescription)")
         }
-        
         return criticsToReturn
     }
 }
