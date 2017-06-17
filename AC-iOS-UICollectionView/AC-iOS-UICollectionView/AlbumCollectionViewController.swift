@@ -73,7 +73,7 @@ class AlbumCollectionViewController: UICollectionViewController, UITextFieldDele
         let escapedString = term.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
         
         APIRequestManager.manager.getData(endPoint: "\(apiURLRoot)?method=album.search&album=\(escapedString!)&api_key=\(apiKey)&format=json") { (data: Data?) in
-            if  let validData = data,
+            if let validData = data,
                 let validAlbums = Album.albums(from: validData) {
                 self.albums = validAlbums
                 DispatchQueue.main.async {
