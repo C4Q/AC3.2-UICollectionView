@@ -16,14 +16,21 @@ class ReviewDetailsViewController: UIViewController {
     var rating: String?
     var summary: String?
     var movieImage: UIImage?
+    var fullArticleURL: URL?
     
-    // MARK: Outlets
+    // MARK: - Outlets / Action Methods
     
+    @IBOutlet weak var showFullArticleButton: UIButton!
     @IBOutlet weak var movieImageView: UIImageView!
     @IBOutlet weak var movieTitleLabel: UILabel!
     @IBOutlet weak var movieRatingLabel: UILabel!
     @IBOutlet weak var movieSummaryLabel: UILabel!
     
+    @IBAction func showFullArticle(_ sender: UIButton) {
+        if let url = fullArticleURL {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
@@ -46,5 +53,8 @@ class ReviewDetailsViewController: UIViewController {
         
         movieImageView.layer.cornerRadius = 5
         movieImageView.layer.masksToBounds = true
+        
+        showFullArticleButton.layer.cornerRadius = 8
+        showFullArticleButton.layer.masksToBounds = true
     }
 }

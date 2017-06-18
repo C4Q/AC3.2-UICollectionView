@@ -171,6 +171,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m13-ah-wOa">
+                                <rect key="frame" x="131.5" y="604" width="111" height="30"/>
+                                <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title=" See Full Article ">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showFullArticle:" destination="7sB-VN-Edf" eventType="touchUpInside" id="fQ3-0a-kvg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -178,8 +188,10 @@
                             <constraint firstItem="rha-jr-v5T" firstAttribute="top" secondItem="QxX-GE-5qW" secondAttribute="bottom" constant="8" id="5dL-Sh-47l"/>
                             <constraint firstItem="QxX-GE-5qW" firstAttribute="top" secondItem="WQT-f4-Tbe" secondAttribute="bottom" constant="24" id="6UM-Ye-oHa"/>
                             <constraint firstItem="DRC-mn-tJ2" firstAttribute="top" secondItem="rha-jr-v5T" secondAttribute="bottom" constant="62" id="KEb-c5-CaE"/>
+                            <constraint firstItem="jQt-LM-gSj" firstAttribute="top" secondItem="m13-ah-wOa" secondAttribute="bottom" constant="33" id="P0F-JX-q2i"/>
                             <constraint firstItem="rha-jr-v5T" firstAttribute="centerX" secondItem="5Hn-1r-W8A" secondAttribute="centerX" id="Sra-qW-Ofe"/>
                             <constraint firstItem="WQT-f4-Tbe" firstAttribute="centerX" secondItem="5Hn-1r-W8A" secondAttribute="centerX" id="Xge-EJ-eM2"/>
+                            <constraint firstItem="m13-ah-wOa" firstAttribute="centerX" secondItem="5Hn-1r-W8A" secondAttribute="centerX" id="ev5-k5-xhB"/>
                             <constraint firstItem="QxX-GE-5qW" firstAttribute="centerX" secondItem="5Hn-1r-W8A" secondAttribute="centerX" id="uwK-jX-FOr"/>
                             <constraint firstItem="DRC-mn-tJ2" firstAttribute="centerX" secondItem="5Hn-1r-W8A" secondAttribute="centerX" id="vwL-9X-dAb"/>
                             <constraint firstItem="WQT-f4-Tbe" firstAttribute="top" secondItem="HOf-RR-SMD" secondAttribute="bottom" constant="49" id="yDp-nc-XKk"/>
@@ -190,6 +202,7 @@
                         <outlet property="movieRatingLabel" destination="rha-jr-v5T" id="aeR-bC-B3A"/>
                         <outlet property="movieSummaryLabel" destination="DRC-mn-tJ2" id="yCh-C6-sUi"/>
                         <outlet property="movieTitleLabel" destination="WQT-f4-Tbe" id="zot-xC-fzs"/>
+                        <outlet property="showFullArticleButton" destination="m13-ah-wOa" id="rru-pQ-sBy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0JZ-fU-g0b" userLabel="First Responder" sceneMemberID="firstResponder"/>

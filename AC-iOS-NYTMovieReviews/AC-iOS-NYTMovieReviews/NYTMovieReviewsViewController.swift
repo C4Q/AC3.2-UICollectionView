@@ -206,6 +206,7 @@ class NYTMovieReviewsViewController: UIViewController, UITableViewDataSource, UI
                 destinationVC.rating = selectedReview.rating
                 destinationVC.summary = selectedReview.summary
                 destinationVC.movieImage = cell.reviewImageView.image
+                destinationVC.fullArticleURL = selectedReview.fullArticleURL
             }
         }
     }

@@ -13,23 +13,39 @@ class Review {
     let rating: String
     let summary: String
     let image: ReviewImage?
+    let fullArticleURL: URL
     
-    init(movieTitle: String, rating: String, summary: String, image: ReviewImage?) {
+    init(movieTitle: String, rating: String, summary: String, fullArticleURL: URL, image: ReviewImage?) {
         self.movieTitle = movieTitle
         self.rating = rating
         self.summary = summary
+        self.fullArticleURL = fullArticleURL
         self.image = image
     }
     
     convenience init?(from dict: [String:AnyObject]) throws {
         if let title = dict["display_title"] as? String,
             let rating = dict["mpaa_rating"] as? String,
-            let summary = dict["summary_short"] as? String {
-            if let multimediaInfo = dict["multimedia"] as? [String:AnyObject] {
+            let summary = dict["summary_short"] as? String,
+            let fullArticleInfo = dict["link"] as? [String:AnyObject],
+            let articleURLString = fullArticleInfo["url"] as? String,
+            let articleURL = URL(string: articleURLString) {
+            
+            
+            
+            if let multimediaInfo = dict["multimedia"] as? [String:AnyObject]
+                 {
+                
+                
                 let image = ReviewImage(from: multimediaInfo)
-                self.init(movieTitle: title, rating: rating, summary: summary, image: image ?? nil)
-            } else {
-                self.init(movieTitle: title, rating: rating, summary: summary, image: nil)
+                self.init(movieTitle: title, rating: rating, summary: summary, fullArticleURL: articleURL, image: image ?? nil)
+            }
+            
+            
+            
+            
+            else {
+                self.init(movieTitle: title, rating: rating, summary: summary, fullArticleURL: articleURL, image: nil)
             }
         } else {
             return nil
