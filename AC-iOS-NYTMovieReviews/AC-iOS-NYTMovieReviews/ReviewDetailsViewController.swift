@@ -32,7 +32,11 @@ class ReviewDetailsViewController: UIViewController {
             let rating = self.rating,
             let summary = self.summary {
             self.movieTitleLabel.text = title
-            self.movieRatingLabel.text = "Rating: \(rating)"
+            if rating == "" {
+                self.movieRatingLabel.text = "Rating: None"
+            } else {
+                self.movieRatingLabel.text = "Rating: \(rating)"
+            }
             self.movieSummaryLabel.text = summary
         }
         
