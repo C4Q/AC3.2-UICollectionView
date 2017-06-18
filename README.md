@@ -20,7 +20,7 @@ collection views are far more flexible in how they can lay out their content.
 While it's highly customizable via an overrideable class ```UICollectionViewLayout```,
 the default ```Flow``` layout is very powerful without any subclassing. The
 protocol ```UICollectionViewDelegateFlowLayout``` defines methods with which the developer 
-can specify the size and spacing items.
+can specify the size and spacing of items.
 
 
 ### 2. DataSource Delegate
