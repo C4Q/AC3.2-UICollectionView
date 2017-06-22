@@ -189,7 +189,7 @@ class AlbumCollectionViewController: UICollectionViewController, UITextFieldDele
 ```
 ---
 
-### 5. Exercise
+### 6. Exercise
 
 #### New York Times Movie Reviews
 
